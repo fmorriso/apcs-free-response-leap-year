@@ -1,8 +1,6 @@
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.format.TextStyle;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.Locale;
 
 public class APCalendar
@@ -83,7 +81,7 @@ public class APCalendar
 		int result = 0;
 		result = dayOfYear(month, day, year);
 		//System.out.format("dayOfWeek: %d-%d-%d is the %d day of the year%n", year, month, day, result);
-		int first = firstDayOfYear(year);
+		//int first = firstDayOfYear(year);
 		//System.out.format("dayOfWeek: First day of year %d is %d%n", year, first);
 		result += firstDayOfYear(year) - 1;
 		result %= 7;
