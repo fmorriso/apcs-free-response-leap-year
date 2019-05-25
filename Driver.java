@@ -17,7 +17,7 @@ public class Driver
 		String name = APCalendar.dayOfWeekName(month, day, year);
 		System.out.format("Driver: %d-%d-%d is a %s%n", year, month, day, name);
 		n = APCalendar.dayOfWeek(month, day, year);
-		System.out.format("Driver: %d-%d-%d is day of week %d%n", year, month, day, n);
+		System.out.format("Driver: %d-%d-%d is relative day of week %d%n", year, month, day, n);
 	
 		System.out.println("===========================");
 		
@@ -25,9 +25,19 @@ public class Driver
 		name = APCalendar.dayOfWeekName(month, day, year);
 		System.out.format("Driver: %d-%d-%d is a %s%n", year, month, day, name);
 		n = APCalendar.dayOfWeek(month, day, year);
-		System.out.format("Driver: %d-%d-%d is day of week %d%n", year, month, day, n);
+		System.out.format("Driver: %d-%d-%d is day of week %d%n", year, month, day, n);		
 	
+		System.out.println("===========================");
 		
+		month = 3;
+		day = 1;
+		year = 2017;
+		n = APCalendar.dayOfYear(month, day, year);
+		System.out.format("Driver: %d-%d-%d is the %d day of the year%n", year, month, day, n);
+	
+		year = 2016;
+		n = APCalendar.dayOfYear(month, day, year);
+		System.out.format("Driver: %d-%d-%d is the %d day of the year%n", year, month, day, n);
 	
 	}
 

@@ -1,6 +1,6 @@
-import java.time.LocalDateTime;
-import java.time.Month;
-import java.time.format.TextStyle;
+import java.time.*;
+import java.time.format.*;
+//
 import java.util.Locale;
 
 public class APCalendar
@@ -51,14 +51,14 @@ public class APCalendar
 	 *            - 4-digit year
 	 * @return - value representing the day of the week.
 	 */
-	private static int firstDayOfYear(int year)
+	public static int firstDayOfYear(int year)
 	{
 		LocalDateTime t = LocalDateTime.of(year, Month.JANUARY, 1, 0, 0);
 		int result = t.getDayOfMonth();
 		return result;
 	}
 
-	private static int dayOfYear(int month, int day, int year)
+	public static int dayOfYear(int month, int day, int year)
 	{
 		int result;
 		LocalDateTime t = LocalDateTime.of(year, month, day, 0, 0);
@@ -78,14 +78,26 @@ public class APCalendar
 	 */
 	public static int dayOfWeek(int month, int day, int year)
 	{
-		int result = 0;
-		result = dayOfYear(month, day, year);
+		LocalDateTime t = LocalDateTime.of(year,  month, day, 0, 0);
+		
+		DayOfWeek dow = t.getDayOfWeek();
+		System.out.format("dayOfWeek: LocalDateTime %d-%d-%d is day of week %d%n", year, month, day, dow.getValue());
+		
+		int doy = t.getDayOfYear();
+		System.out.format("dayOfWeek: LocalDateTime %d-%d-%d is day of year %d%n", year, month, day, doy);
+		
+		String name = dow.getDisplayName(TextStyle.FULL, Locale.US);
+		System.out.format("dayOfWeek: LocalDateTime %d-%d-%d is day %s%n", year, month, day, name);
+		
+		// 
+		int result = dayOfYear(month, day, year);
 		//System.out.format("dayOfWeek: %d-%d-%d is the %d day of the year%n", year, month, day, result);
 		//int first = firstDayOfYear(year);
 		//System.out.format("dayOfWeek: First day of year %d is %d%n", year, first);
-		result += firstDayOfYear(year) - 1;
+		result += firstDayOfYear(year);
+		
 		result %= 7;
-		System.out.format("dayOfWeek: %d-%d-%d is the %d day of the week%n", year, month, day, result);
+		System.out.format("dayOfWeek: %d-%d-%d is relative day of the week %d%n", year, month, day, result);
 		return result;
 	}
 
