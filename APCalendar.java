@@ -6,30 +6,35 @@ import java.util.Locale;
 
 public class APCalendar
 {
-	/** Returns true if year is a leap year; otherwise, returns false */
+	/**
+	 * Returns true if year is a leap year; otherwise, returns false
+	 * 
+	 * A year is a leap year if
+	 * 
+	 * it's divisible by 400,
+	 * 
+	 * or
+	 * 
+	 * it's divisible by 4 AND it's NOT divisible by 100.
+	 */
 	private static boolean isLeapYear(int year)
 	{
-		/*
-		 * A year is a leap year if
-		 * 
-		 * it's divisible by 400,
-		 * 
-		 * or
-		 * 
-		 * it's divisible by 4 AND it's NOT divisible by 100.
-		 */
 		boolean result = (year % 400 == 0) || (year % 4 == 0) && (year % 100 != 0);
 		return result;
 	}
 
 	/**
-	 * Returns the number of leap years between year1 and year2, inclusive Precondition: 0 <= year1 <= year2
+	 * Returns the number of leap years between year1 and year2, inclusive.
+	 * 
+	 * 
 	 * 
 	 * @param year1
 	 *            - beginning year
 	 * @param year2
 	 *            - ending year
 	 * @return number of leap years
+	 * 
+	 * Precondition: 0 <= year1 <= year2
 	 */
 	public static int numberOfLeapYears(int year1, int year2)
 	{
@@ -79,25 +84,25 @@ public class APCalendar
 	 */
 	public static int dayOfWeek(int month, int day, int year)
 	{
-		LocalDateTime t = LocalDateTime.of(year,  month, day, 0, 0);
-		
+		LocalDateTime t = LocalDateTime.of(year, month, day, 0, 0);
+
 		DayOfWeek dow = t.getDayOfWeek();
 		System.out.format("dayOfWeek: LocalDateTime %d-%d-%d is day of week %d%n", year, month, day, dow.getValue());
-		
+
 		int doy = t.getDayOfYear();
 		System.out.format("dayOfWeek: LocalDateTime %d-%d-%d is day of year %d%n", year, month, day, doy);
-		
+
 		String name = dow.getDisplayName(TextStyle.FULL, Locale.US);
 		System.out.format("dayOfWeek: LocalDateTime %d-%d-%d is day %s%n", year, month, day, name);
-		
-		// 
-		int result = dayOfYear(month, day, year);
-		//System.out.format("dayOfWeek: %d-%d-%d is the %d day of the year%n", year, month, day, result);
-		//int first = firstDayOfYear(year);
-		//System.out.format("dayOfWeek: First day of year %d is %d%n", year, first);
-		result += firstDayOfYear(year);
-		
-		result %= 7;
+
+		//
+		int result = (firstDayOfYear(year) + dayOfYear(month, day, year)) % 7;
+		// System.out.format("dayOfWeek: %d-%d-%d is the %d day of the year%n", year, month, day, result);
+		// int first = firstDayOfYear(year);
+		// System.out.format("dayOfWeek: First day of year %d is %d%n", year, first);
+		//result += firstDayOfYear(year);
+
+		//result %= 7;
 		System.out.format("dayOfWeek: %d-%d-%d is relative day of the week %d%n", year, month, day, result);
 		return result;
 	}
