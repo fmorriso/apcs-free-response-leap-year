@@ -93,22 +93,32 @@ public class APCalendar
 		System.out.format("dayOfWeek: LocalDateTime %d-%02d-%02d is relative day of week number %d (%s)%n", year, month, day, n, dowName);
 
 		int doy = t.getDayOfYear();
-		System.out.format("dayOfWeek: LocalDateTime %d-%02d-%02d is day of year number %d%n", year, month, day, doy);
+		System.out.format("dayOfWeek (API): LocalDateTime %d-%02d-%02d is day of year number %d%n", year, month, day, doy);
 		
-		// Use helpers to determine dayOfWeek (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+		// Use helper methods to determine dayOfWeek (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
 		int result = (firstDayOfYear(year) + dayOfYear(month, day, year)) % 7;
-		dowName = DayOfWeek.of(result).getDisplayName(TextStyle.FULL, locale);
-		System.out.format("dayOfWeek: %d-%02d-%02d is relative day of the week number %d (%s)%n", year, month, day, result, dowName);
+		
+		// NOTE: because the ISO 8601 standard uses 1-7 for Monday through Sunday, 
+		// if "result", as determined above, is 0 (zero), we have to change it to 7 in order to make the next API call
+		// to the Java built-in DayOfWeek.of() static method.
+		// Reference: https://docs.oracle.com/javase/8/docs/api/java/time/DayOfWeek.html
+		if(result == 0) {
+			n = 7;
+		} else {
+			n = result;
+		}
+		dowName = DayOfWeek.of(n).getDisplayName(TextStyle.FULL, locale);
+		System.out.format("dayOfWeek (Exam technique): %d-%02d-%02d is relative day of the week number %d (%s)%n", year, month, day, result, dowName);
 		return result;
 	}
 
 	public static String dayOfWeekName(int month, int day, int year)
-	{
-		String result = "";
+	{		
 		LocalDateTime t = LocalDateTime.of(year, month, day, 0, 0);
-		result = t.getDayOfWeek().getDisplayName(TextStyle.FULL, locale);
-		System.out.format("dayOfWeekName: %d-%02d-%02d is a %s%n", year, month, day, result);
-		return result;
+		int dowNumber = t.getDayOfWeek().getValue();
+		String dowName = t.getDayOfWeek().getDisplayName(TextStyle.FULL, locale);
+		System.out.format("dayOfWeekName: %d-%02d-%02d is week day number %d, which is a %s%n", year, month, day, dowNumber, dowName);
+		return dowName;
 	}
 
 }

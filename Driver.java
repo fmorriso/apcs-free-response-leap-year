@@ -29,6 +29,14 @@ public class Driver
 	
 		System.out.println("===========================");
 		
+		day = 6; // Sunday
+		name = APCalendar.dayOfWeekName(month, day, year);
+		System.out.format("Driver: %d-%02d-%02d is a %s%n", year, month, day, name);
+		n = APCalendar.dayOfWeek(month, day, year);		
+		System.out.format("Driver: %d-%02d-%02d is relative day of week number %d%n", year, month, day, n);		
+	
+		System.out.println("===========================");
+		
 		month = 3;
 		day = 1;
 		year = 2017;
