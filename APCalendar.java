@@ -1,7 +1,9 @@
+import java.time.LocalDateTime;
 import java.time.Month;
+import java.time.format.TextStyle;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 public class APCalendar
 {
@@ -41,20 +43,60 @@ public class APCalendar
 
 		return count;
 	}
-	
-	private static int firstDayOfYear(int year) {
-		int result  = 0;
-		Calendar c = GregorianCalendar.getInstance();		
-		c.set(year, 0, 1);
-		result = c.get(Calendar.DAY_OF_WEEK) - 1;
+
+	/**
+	 * returns the value representing the day of the week for the first day of year, where 0 denotes Sunday, 1 denotes Monday, ..., and 6 denotes Saturday.
+	 * 
+	 * Precondition: The date represented by month, day, year is a valid date.
+	 * 
+	 * @param year
+	 *            - 4-digit year
+	 * @return - value representing the day of the week.
+	 */
+	private static int firstDayOfYear(int year)
+	{
+		LocalDateTime t = LocalDateTime.of(year, Month.JANUARY, 1, 0, 0);
+		int result = t.getDayOfMonth();
 		return result;
 	}
-	
-	public static int dayOfWeek(int month, int day, int year) {
+
+	private static int dayOfYear(int month, int day, int year)
+	{
+		int result;
+		LocalDateTime t = LocalDateTime.of(year, month, day, 0, 0);
+		result = t.getDayOfYear();
+		System.out.format("dayOfYear: %d-%d-%d is day of year %d%n", year, month, day, result);
+		return result;
+	}
+
+	/**
+	 * Return the value representing the day of the week for the given date (month, day, year), where 0 denotes Sunday, 1 denotes Monday, ..., and 6 denotes Saturday. Precondition: The date
+	 * represented by month, day, year is a valid date.
+	 * 
+	 * @param month
+	 * @param day
+	 * @param year
+	 * @return - value
+	 */
+	public static int dayOfWeek(int month, int day, int year)
+	{
 		int result = 0;
-		
-		
-		
+		result = dayOfYear(month, day, year);
+		//System.out.format("dayOfWeek: %d-%d-%d is the %d day of the year%n", year, month, day, result);
+		int first = firstDayOfYear(year);
+		//System.out.format("dayOfWeek: First day of year %d is %d%n", year, first);
+		result += firstDayOfYear(year) - 1;
+		result %= 7;
+		System.out.format("dayOfWeek: %d-%d-%d is the %d day of the week%n", year, month, day, result);
+		return result;
+	}
+
+	public static String dayOfWeekName(int month, int day, int year)
+	{
+		String result = "";
+		LocalDateTime t = LocalDateTime.of(year, month, day, 0, 0);
+		result = t.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.US);
+		System.out.format("dayOfWeekName: %d-%d-%d is a %s%n", year, month, day, result);
 		return result;
 	}
 
