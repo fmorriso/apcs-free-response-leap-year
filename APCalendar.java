@@ -6,6 +6,7 @@ import java.util.Locale;
 
 public class APCalendar
 {
+	private static final Locale locale = Locale.US;
 	/**
 	 * Returns true if year is a leap year; otherwise, returns false
 	 * 
@@ -69,7 +70,7 @@ public class APCalendar
 		int result;
 		LocalDateTime t = LocalDateTime.of(year, month, day, 0, 0);
 		result = t.getDayOfYear();
-		System.out.format("dayOfYear: %d-%d-%d is day of year %d%n", year, month, day, result);
+		System.out.format("dayOfYear: %d-%02d-%02d is day of year number %d%n", year, month, day, result);
 		return result;
 	}
 
@@ -84,26 +85,20 @@ public class APCalendar
 	 */
 	public static int dayOfWeek(int month, int day, int year)
 	{
+		// use built-in technique to cross-check the result
 		LocalDateTime t = LocalDateTime.of(year, month, day, 0, 0);
-
 		DayOfWeek dow = t.getDayOfWeek();
-		System.out.format("dayOfWeek: LocalDateTime %d-%d-%d is day of week %d%n", year, month, day, dow.getValue());
+		int n = dow.getValue();
+		String dowName = DayOfWeek.of(n).getDisplayName(TextStyle.FULL, locale);
+		System.out.format("dayOfWeek: LocalDateTime %d-%02d-%02d is relative day of week number %d (%s)%n", year, month, day, n, dowName);
 
 		int doy = t.getDayOfYear();
-		System.out.format("dayOfWeek: LocalDateTime %d-%d-%d is day of year %d%n", year, month, day, doy);
-
-		String name = dow.getDisplayName(TextStyle.FULL, Locale.US);
-		System.out.format("dayOfWeek: LocalDateTime %d-%d-%d is day %s%n", year, month, day, name);
-
-		//
+		System.out.format("dayOfWeek: LocalDateTime %d-%02d-%02d is day of year number %d%n", year, month, day, doy);
+		
+		// Use helpers to determine dayOfWeek (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
 		int result = (firstDayOfYear(year) + dayOfYear(month, day, year)) % 7;
-		// System.out.format("dayOfWeek: %d-%d-%d is the %d day of the year%n", year, month, day, result);
-		// int first = firstDayOfYear(year);
-		// System.out.format("dayOfWeek: First day of year %d is %d%n", year, first);
-		//result += firstDayOfYear(year);
-
-		//result %= 7;
-		System.out.format("dayOfWeek: %d-%d-%d is relative day of the week %d%n", year, month, day, result);
+		dowName = DayOfWeek.of(result).getDisplayName(TextStyle.FULL, locale);
+		System.out.format("dayOfWeek: %d-%02d-%02d is relative day of the week number %d (%s)%n", year, month, day, result, dowName);
 		return result;
 	}
 
@@ -111,8 +106,8 @@ public class APCalendar
 	{
 		String result = "";
 		LocalDateTime t = LocalDateTime.of(year, month, day, 0, 0);
-		result = t.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.US);
-		System.out.format("dayOfWeekName: %d-%d-%d is a %s%n", year, month, day, result);
+		result = t.getDayOfWeek().getDisplayName(TextStyle.FULL, locale);
+		System.out.format("dayOfWeekName: %d-%02d-%02d is a %s%n", year, month, day, result);
 		return result;
 	}
 
