@@ -4,13 +4,19 @@ public class Driver
 
 	public static void main(String[] args)
 	{
+		// Part A
 		int year1 = 1990;
 		int year2 = 2019;
 		int n = APCalendar.numberOfLeapYears(year1, year2);
-		System.out.format("There are %d leap years between %d and %d%n", n, year1, year2);
+		System.out.format("APCalendar: There are %d leap years between %d and %d%n", n, year1, year2);
 
+		// cross check above answer with built-in Java API
+		int crossCheck = CalendarHelper.numberOfLeapYears(year1, year2);
+		System.out.format("CalendarHelper: There are %d leap years between %d and %d%n", crossCheck, year1, year2);
+		
 		System.out.println("===========================");
 		
+		// Part B
 		int year = 2019;
 		int month = 1;
 		int day = 1; // Tuesday
