@@ -3,7 +3,6 @@ import java.time.*;
 
 public class APCalendar
 {
-	
 	/**
 	 * Returns true if year is a leap year; otherwise, returns false
 	 * 
@@ -32,7 +31,7 @@ public class APCalendar
 	 *            - ending year
 	 * @return number of leap years
 	 * 
-	 * Precondition: 0 <= year1 <= year2
+	 *         Precondition: 0 <= year1 <= year2
 	 */
 	public static int numberOfLeapYears(int year1, int year2)
 	{
@@ -47,8 +46,7 @@ public class APCalendar
 	}
 
 	/**
-	 * returns the value representing the day of the week for the first day of year, 
-	 * where 0 denotes Sunday, 1 denotes Monday, ..., and 6 denotes Saturday.
+	 * returns the value representing the day of the week for the first day of year, where 0 denotes Sunday, 1 denotes Monday, ..., and 6 denotes Saturday.
 	 * 
 	 * Precondition: The date represented by month, day, year is a valid date.
 	 * 
@@ -56,20 +54,27 @@ public class APCalendar
 	 *            - 4-digit year
 	 * @return - value representing the day of the week.
 	 */
-	public static int firstDayOfYear(int year)
+	private static int firstDayOfYear(int year)
 	{
 		LocalDateTime t = LocalDateTime.of(year, Month.JANUARY, 1, 0, 0);
-		int result = t.getDayOfMonth(); 
-		System.out.format("APCalendar firstDayOfYear: %d-%02d-%02d is day of year number %d%n", year, 1, 1, result);
+		int result = t.getDayOfMonth();
+		// System.out.format("APCalendar firstDayOfYear: %d-%02d-%02d is day of year number %d%n", year, 1, 1, result);
 		return result;
 	}
 
+	/**
+	 * Returns n, where month, day, and year specify the nth day of the year.
+	 * 
+	 * Returns 1 for January 1 (month = 1, day = 1) of any year.
+	 * 
+	 * Precondition: The date represented by month, day, year is a valid date.
+	 */
 	public static int dayOfYear(int month, int day, int year)
 	{
 		int result;
 		LocalDateTime t = LocalDateTime.of(year, month, day, 0, 0);
-		result = t.getDayOfYear();		
-		//System.out.format("APCalendar dayOfYear: %d-%02d-%02d is day of year number %d%n", year, month, day, result);
+		result = t.getDayOfYear();
+		// System.out.format("APCalendar dayOfYear: %d-%02d-%02d is day of year number %d%n", year, month, day, result);
 		return result;
 	}
 
@@ -77,18 +82,19 @@ public class APCalendar
 	 * Return the value representing the day of the week for the given date (month, day, year), where 0 denotes Sunday, 1 denotes Monday, ..., and 6 denotes Saturday. Precondition: The date
 	 * represented by month, day, year is a valid date.
 	 * 
-	 * @param month - month in range 1-12
-	 * @param day - day of the month
-	 * @param year - year
+	 * @param month
+	 *            - month in range 1-12
+	 * @param day
+	 *            - day of the month
+	 * @param year
+	 *            - year
 	 * @return - relative day of week (0=Sunday, 1=Monday,..., Saturday=6)
 	 */
 	public static int dayOfWeek(int month, int day, int year)
-	{		
+	{
 		// Use given helper methods to determine dayOfWeek (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
 		int result = (firstDayOfYear(year) + dayOfYear(month, day, year)) % 7;
 		return result;
 	}
-
-
 
 }

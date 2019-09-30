@@ -52,7 +52,7 @@ public class CalendarHelper
 		int result = t.getDayOfWeek().getValue(); 
 		// if "result", as determined above, is 7 (Sunday) we have to change it to 0 in order to adjust
 		// the value returned by the Java built-in DayOfWeek.of() method to the values used by College Board for the exam.		
-		if(result == 7) { // Change from 1-7 to 0-6 with Sunday = 0 
+		if(result == 7) { // Change from 1-7 (where 1=Monday, 7=Sunday) to 0-6 with Sunday = 0 
 			result = 0;
 		} 
 		return result;
