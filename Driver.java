@@ -1,4 +1,5 @@
-// AP CS 2019 - Free Response - Leap Year
+// AP CS Exam - 2019 - Free Response #1 - Leap Year
+// Author: Fred Morrison
 public class Driver
 {
 
@@ -22,7 +23,7 @@ public class Driver
 		int day = 1; // Tuesday, January 1, 2019
 
 		System.out.format("Case %d-%02d-%02d%n", year, month, day);
-		
+
 		String name = CalendarHelper.dayOfWeekName(month, day, year);
 		n = APCalendar.dayOfWeek(month, day, year);
 		System.out.format("Driver using APCalendar: %d-%02d-%02d is relative day of week number %d (%s)%n", year, month, day, n, name);
@@ -35,8 +36,8 @@ public class Driver
 
 		day = 5; // Saturday, January 5, 2019
 		System.out.format("Case %d-%02d-%02d%n", year, month, day);
-		
-		name = CalendarHelper.dayOfWeekName(month, day, year);		
+
+		name = CalendarHelper.dayOfWeekName(month, day, year);
 		n = APCalendar.dayOfWeek(month, day, year);
 		System.out.format("Driver using APCalendar: %d-%02d-%02d is relative day of week number %d (%s)%n", year, month, day, n, name);
 
@@ -48,7 +49,7 @@ public class Driver
 
 		day = 6; // Sunday, January 6, 2019
 		System.out.format("Case %d-%02d-%02d%n", year, month, day);
-		
+
 		name = CalendarHelper.dayOfWeekName(month, day, year);
 		n = APCalendar.dayOfWeek(month, day, year);
 		System.out.format("Driver using APCalendar: %d-%02d-%02d is relative day of week number %d (%s)%n", year, month, day, n, name);
@@ -62,7 +63,7 @@ public class Driver
 		month = 3;
 		day = 1;
 		year = 2017;
-		
+
 		System.out.format("Case %d-%02d-%02d%n", year, month, day);
 		n = APCalendar.dayOfYear(month, day, year);
 		System.out.format("Driver using APCalendar: %d-%02d-%02d is day of the year number %d%n", year, month, day, n);

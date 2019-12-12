@@ -1,4 +1,5 @@
-// AP CS 2019 - Free Response - Leap Year
+// AP CS Exam - 2019 - Free Response #1 - Leap Year
+// Author: Fred Morrison
 // This helper class uses built-in Java API calls to cross-check the College Board solution
 import java.time.LocalDateTime;
 import java.time.Month;
