@@ -58,9 +58,9 @@ public class APCalendar
 	private static int firstDayOfYear(int year)
 	{
 		LocalDateTime t = LocalDateTime.of(year, Month.JANUARY, 1, 0, 0);
-		DayOfWeek dyw = t.getDayOfWeek();
-		int result = dyw.getValue();
-		// adjust from 1-7 number to 0-6 numberings
+		// get Java day of week which is 1-7, where 1=Monday and 7=Sunday
+		int result = t.getDayOfWeek().getValue();
+		// adjust from 1-7 numbering (Mon->Sun) to 0-6 numbering (Sun->Sat) to meet AP Exam requirement
 		if(result == 7)
 			result = 0;
 		System.out.format("APCalendar firstDayOfYear: %d-%02d-%02d is day of year number %d%n", year, 1, 1, result);
