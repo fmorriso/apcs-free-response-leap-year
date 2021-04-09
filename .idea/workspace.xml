@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="10f79378-6463-40c7-ba28-01bbdd608f0e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APCalendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/APCalendar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CalendarHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/Driver.java" afterDir="false" />
-    </list>
+    <list default="true" id="10f79378-6463-40c7-ba28-01bbdd608f0e" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -141,7 +136,7 @@
       <workItem from="1558886570071" duration="688000" />
       <workItem from="1563325942013" duration="121000" />
       <workItem from="1617977594737" duration="3045000" />
-      <workItem from="1617980675856" duration="672000" />
+      <workItem from="1617980675856" duration="996000" />
     </task>
     <servers />
   </component>
