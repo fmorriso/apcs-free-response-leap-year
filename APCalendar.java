@@ -58,8 +58,12 @@ public class APCalendar
 	private static int firstDayOfYear(int year)
 	{
 		LocalDateTime t = LocalDateTime.of(year, Month.JANUARY, 1, 0, 0);
-		int result = t.getDayOfMonth();
-		// System.out.format("APCalendar firstDayOfYear: %d-%02d-%02d is day of year number %d%n", year, 1, 1, result);
+		DayOfWeek dyw = t.getDayOfWeek();
+		int result = dyw.getValue();
+		// adjust from 1-7 number to 0-6 numberings
+		if(result == 7)
+			result = 0;
+		System.out.format("APCalendar firstDayOfYear: %d-%02d-%02d is day of year number %d%n", year, 1, 1, result);
 		return result;
 	}
 
@@ -96,8 +100,20 @@ public class APCalendar
 	public static int dayOfWeek(int month, int day, int year)
 	{
 		// Use given helper methods to determine dayOfWeek (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
-		int result = (firstDayOfYear(year) + dayOfYear(month, day, year)) % 7;
+		int startDay = firstDayOfYear(year);
+		int nthDay = dayOfYear(month, day, year);
+		int result = (startDay + nthDay - 1) % 7;
+		// int result = dayOfYear(month, day, year) % 7;
 		return result;
 	}
 
+	public static String dayOfWeekName(int month, int day, int year)
+	{
+		String[] names = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+		int n = dayOfWeek(month, day, year);
+		System.out.format("APCalendar dayOfWeek: %d-%02d-%02d is day of week %d%n", year, month, day, n);
+		String dayOfWeek = names[n];
+		System.out.format("APCalendar dayOfWeekName: %d-%02d-%02d is day of week %s%n", year, month, day, dayOfWeek);
+		return dayOfWeek;
+	}
 }

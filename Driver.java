@@ -22,9 +22,9 @@ public class Driver
 		int month = 1;
 		int day = 1; // Tuesday, January 1, 2019
 
-		System.out.format("Case %d-%02d-%02d%n", year, month, day);
+		System.out.format("Case Tuesday, January 1, 2019 %d-%02d-%02d%n", year, month, day);
 
-		String name = CalendarHelper.dayOfWeekName(month, day, year);
+		String name = APCalendar.dayOfWeekName(month, day, year);
 		n = APCalendar.dayOfWeek(month, day, year);
 		System.out.format("Driver using APCalendar: %d-%02d-%02d is relative day of week number %d (%s)%n", year, month, day, n, name);
 
@@ -35,9 +35,10 @@ public class Driver
 		System.out.println("===========================");
 
 		day = 5; // Saturday, January 5, 2019
-		System.out.format("Case %d-%02d-%02d%n", year, month, day);
+		System.out.format("Case Saturday, January 5, 2019 %d-%02d-%02d%n", year, month, day);
 
 		name = CalendarHelper.dayOfWeekName(month, day, year);
+		name = APCalendar.dayOfWeekName(month, day, year);
 		n = APCalendar.dayOfWeek(month, day, year);
 		System.out.format("Driver using APCalendar: %d-%02d-%02d is relative day of week number %d (%s)%n", year, month, day, n, name);
 
@@ -48,9 +49,10 @@ public class Driver
 		System.out.println("===========================");
 
 		day = 6; // Sunday, January 6, 2019
-		System.out.format("Case %d-%02d-%02d%n", year, month, day);
+		System.out.format("Case Sunday, January 6, 2019 %d-%02d-%02d%n", year, month, day);
 
 		name = CalendarHelper.dayOfWeekName(month, day, year);
+		name = APCalendar.dayOfWeekName(month, day, year);
 		n = APCalendar.dayOfWeek(month, day, year);
 		System.out.format("Driver using APCalendar: %d-%02d-%02d is relative day of week number %d (%s)%n", year, month, day, n, name);
 
@@ -65,21 +67,25 @@ public class Driver
 		year = 2017;
 
 		System.out.format("Case %d-%02d-%02d%n", year, month, day);
-		n = APCalendar.dayOfYear(month, day, year);
-		System.out.format("Driver using APCalendar: %d-%02d-%02d is day of the year number %d%n", year, month, day, n);
+		name = CalendarHelper.dayOfWeekName(month, day, year);
+		name = APCalendar.dayOfWeekName(month, day, year);
+		n = APCalendar.dayOfWeek(month, day, year);
+		System.out.format("Driver using APCalendar: %d-%02d-%02d is relative day of week number %d (%s)%n", year, month, day, n, name);
 		// cross-check the above answer using built-in Java API:
-		crossCheck = CalendarHelper.getDayOfYear(month, day, year);
-		System.out.format("Driver using CalendarHelper: %d-%02d-%02d is day of the year number %d%n", year, month, day, crossCheck);
+		crossCheck = CalendarHelper.getDayOfWeekCollegeBoard(month, day, year);
+		System.out.format("Driver using CalendarHelper: %d-%02d-%02d is relative day of week number %d (%s)%n", year, month, day, crossCheck, name);
 
 		System.out.println("===========================");
 
 		year = 2016;
 		System.out.format("Case %d-%02d-%02d%n", year, month, day);
-		n = APCalendar.dayOfYear(month, day, year);
-		System.out.format("Driver using APCalendar: %d-%02d-%02d is day of the year number %d%n", year, month, day, n);
+		name = CalendarHelper.dayOfWeekName(month, day, year);
+		name = APCalendar.dayOfWeekName(month, day, year);
+		n = APCalendar.dayOfWeek(month, day, year);
+		System.out.format("Driver using APCalendar: %d-%02d-%02d is relative day of week number %d (%s)%n", year, month, day, n, name);
 		// cross-check the above answer using built-in Java API:
-		crossCheck = CalendarHelper.getDayOfYear(month, day, year);
-		System.out.format("Driver using CalendarHelper: %d-%02d-%02d is day of the year number %d%n", year, month, day, crossCheck);
+		crossCheck = CalendarHelper.getDayOfWeekCollegeBoard(month, day, year);
+		System.out.format("Driver using CalendarHelper: %d-%02d-%02d is relative day of week number %d (%s)%n", year, month, day, crossCheck, name);
 
 	}
 
