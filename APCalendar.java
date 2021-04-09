@@ -24,7 +24,7 @@ public class APCalendar
 	/**
 	 * Returns the number of leap years between year1 and year2, inclusive.
 	 * 
-	 * 
+	 *  TO BE IMPLEMENTED IN PART A
 	 * 
 	 * @param year1
 	 *            - beginning year
@@ -82,6 +82,8 @@ public class APCalendar
 	/**
 	 * Return the value representing the day of the week for the given date (month, day, year), where 0 denotes Sunday, 1 denotes Monday, ..., and 6 denotes Saturday. Precondition: The date
 	 * represented by month, day, year is a valid date.
+	 *
+	 *  TO BE IMPLEMENTED IN PART B
 	 * 
 	 * @param month
 	 *            - month in range 1-12
